@@ -1,0 +1,7 @@
+interface:
+  display_name: "规则仓库 Mihomo 配置"
+  short_description: "维护本项目 Mihomo 代理配置"
+  default_prompt: "使用 $rule-mihomo-config 安全审查或更新本仓库的 Mihomo 配置。"
+
+policy:
+  allow_implicit_invocation: true
