@@ -75,8 +75,8 @@ proxy-groups:
   - {name: 日本节点, type: select, include-all: true, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/jp.png}
   - {name: 狮城节点, type: select, include-all: true, filter: "(?=.*(新加坡|坡|狮城|SG|Singapore))^((?!(台|日|韩|深|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/sg.png}
   - {name: 美国节点, type: select, include-all: true, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/us.png}
-  - {name: 故障转移, type: fallback, use: [DAGEYUN, XFLASH], url: https://www.gstatic.com/generate_204, interval: 600, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
-  - {name: 自动选择, type: url-test, use: [DAGEYUN, XFLASH], url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 600, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
+  - {name: 故障转移, type: fallback, use: [PAIPIAO, DAGEYUN, XFLASH], url: https://www.gstatic.com/generate_204, interval: 600, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
+  - {name: 自动选择, type: url-test, use: [PAIPIAO, DAGEYUN, XFLASH], url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 600, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
   - {name: 全部节点, type: select, include-all: true, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png}
 
 # 规则匹配
