@@ -135,7 +135,7 @@ rule-providers:
   futu_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/futu.mrs"}
   x_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/x.mrs"}
   olevod_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/olevod.mrs"}
-  yfsp_domain: { <<: *domain, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/yfsp.list"}
+  yfsp_domain: { <<: *class, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/yfsp.list"}
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
   
