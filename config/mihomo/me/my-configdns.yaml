@@ -72,6 +72,8 @@ proxy-groups:
   - {name: TikTok, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png}
   - {name: Spotify, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png}
   - {name: X, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/x.png}
+  - {name: Threads, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/threads.png}
+  - {name: Instagram, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/instagram.png}
   - {name: 欧乐影院, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/olevod.png}
   - {name: 爱壹帆, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/yfsp.png}
   - {name: 富途牛牛, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/futu.png}
@@ -113,6 +115,8 @@ rules:
   - RULE-SET,spotify_domain,Spotify
   - RULE-SET,futu_domain,富途牛牛
   - RULE-SET,x_domain,X
+  - RULE-SET,threads_domain,Threads
+  - RULE-SET,instagram_domain,Instagram
   - RULE-SET,olevod_domain,欧乐影院
   - RULE-SET,yfsp_domain,爱壹帆
   - RULE-SET,telegram_domain,Telegram
@@ -150,6 +154,8 @@ rule-providers:
   spotify_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.mrs"}
   futu_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/futu.mrs"}
   x_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/x.mrs"}
+  threads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/threads.mrs"}
+  instagram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/instagram.mrs"}
   olevod_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/olevod.mrs"}
   yfsp_domain: { <<: *class, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/yfsp.list"}
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
