@@ -58,7 +58,7 @@ dns:
 
 # 出站策略
 proxy-groups:
-  - {name: 默认代理, type: select, proxies: &common-proxies [自动选择, 故障转移, 狮城节点, 日本节点, 香港节点, 美国节点, 全部节点, 直连], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
+  - {name: 默认代理, type: select, proxies: &common-proxies [自动选择, 故障转移, 狮城手动, 日本手动, 香港手动, 美国手动, 狮城故转, 日本故转, 香港故转, 美国故转, 狮城自动, 日本自动, 香港自动, 美国自动, 全部节点, 直连], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
   - {name: YouTube, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png}
   - {name: Google, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png}
   - {name: ChatGPT, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png}
@@ -71,22 +71,22 @@ proxy-groups:
   - {name: 欧乐影院, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/olevod.png}
   - {name: 爱壹帆, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/yfsp.png}
   - {name: 富途牛牛, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/futu.png}
-  - {name: 漏网之鱼, type: select, proxies: [默认代理, 自动选择, 故障转移, 狮城节点, 日本节点, 香港节点, 美国节点, 全部节点, 直连], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png}
+  - {name: 漏网之鱼, type: select, proxies: [默认代理, 自动选择, 故障转移, 狮城手动, 日本手动, 香港手动, 美国手动, 狮城故转, 日本故转, 香港故转, 美国故转, 狮城自动, 日本自动, 香港自动, 美国自动, 全部节点, 直连], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png}
   # 地区手动选择
   - {name: 香港手动, type: select, include-all: true, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$", exclude-filter: &node-exclude '(?i)(剩余|流量|官网|套餐|到期|过期|Expire|Traffic|Reset|Game|游戏|家宽|倍率|[0-9]+(\.[0-9]+)?x|[0-9]+(\.[0-9]+)?倍)', icon: https://flagcdn.com/w80/hk.png}
   - {name: 日本手动, type: select, include-all: true, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/jp.png}
   - {name: 狮城手动, type: select, include-all: true, filter: "(?=.*(新加坡|坡|狮城|SG|Singapore))^((?!(台|日|韩|深|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/sg.png}
   - {name: 美国手动, type: select, include-all: true, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/us.png}
   # 地区故障转移
-  - { name: 🔯 香港故转, type: fallback, include-all: true, interval: 300, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/hk.png }
-  - { name: 🔯 日本故转, type: fallback, include-all: true, interval: 300, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/jp.png }
-  - { name: 🔯 狮城故转, type: fallback, include-all: true, interval: 300, filter: "(?=.*(新加坡|坡|狮城|SG|Singapore))^((?!(台|日|韩|深|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/sg.png }
-  - { name: 🔯 美国故转, type: fallback, include-all: true, interval: 300, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/us.png }
+  - { name: 香港故转, type: fallback, include-all: true, interval: 300, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/hk.png }
+  - { name: 日本故转, type: fallback, include-all: true, interval: 300, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/jp.png }
+  - { name: 狮城故转, type: fallback, include-all: true, interval: 300, filter: "(?=.*(新加坡|坡|狮城|SG|Singapore))^((?!(台|日|韩|深|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/sg.png }
+  - { name: 美国故转, type: fallback, include-all: true, interval: 300, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/us.png }
   # 地区自动测速
-  - {name: ♻️ 香港自动, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/hk.png}
-  - {name: ♻️ 日本自动, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/jp.png}
-  - {name: ♻️ 狮城自动, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?=.*(新加坡|坡|狮城|SG|Singapore))^((?!(港|台|韩|日|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/sg.png}
-  - {name: ♻️ 美国自动, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/us.png}
+  - {name: 香港自动, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/hk.png}
+  - {name: 日本自动, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/jp.png}
+  - {name: 狮城自动, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?=.*(新加坡|坡|狮城|SG|Singapore))^((?!(港|台|韩|日|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/sg.png}
+  - {name: 美国自动, type: url-test, include-all: true, tolerance: 50, interval: 300, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/us.png}
   # 全部节点自动选择
   - {name: 故障转移, type: fallback, use: [PAIPIAO, DAGEYUN, XFLASH], url: https://www.gstatic.com/generate_204, interval: 600, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
   - {name: 自动选择, type: url-test, use: [PAIPIAO, DAGEYUN, XFLASH], url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 600, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
