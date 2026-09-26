@@ -82,6 +82,7 @@ proxy-groups:
   - {name: 小红书, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/xiaohongshu.png}
   - {name: 富途牛牛, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/futu.png}
   - {name: 漏网之鱼, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png}
+  - {name: Speedtest, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Speedtest.png}
   - {name: 家宽前置, type: select, proxies: [自动选择, 故障转移, 狮城手动, 日本手动, 香港手动, 美国手动, 全部节点, 直连], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Server.png}
   # 地区手动选择
   - {name: 香港手动, type: select, include-all: true, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/hk.png}
@@ -126,6 +127,7 @@ rules:
   - RULE-SET,google_ip,Google
   - RULE-SET,netflix_ip,NETFLIX
   - RULE-SET,telegram_ip,Telegram
+  - RULE-SET,speedtest_domain,Speedtest
   - RULE-SET,geolocation-!cn,默认代理
   - RULE-SET,cn_domain,直连
   - RULE-SET,cn_ip,直连
@@ -163,6 +165,7 @@ rule-providers:
   olevod_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/olevod.mrs"}
   yfsp_domain: { <<: *class, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/yfsp.list"}
   binance_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/binance.mrs"}
+  speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/speedtest.mrs" }
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
   
