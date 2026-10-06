@@ -102,8 +102,8 @@ proxy-groups:
   - {name: 良心云故转, type: fallback, use: [ LIANGXIN ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
   - {name: 大哥云故转, type: fallback, use: [ DAGEYUN ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
   # 全部节点故转自动
-  - {name: 故障转移, type: fallback, include-all: true, url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png }
   - {name: 自动选择, type: url-test, include-all: true, url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png }
+  - {name: 故障转移, type: fallback, include-all: true, url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png }
   - {name: 全部节点, type: select, include-all: true, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png}
 
 # 规则匹配
