@@ -82,6 +82,7 @@ proxy-groups:
   - {name: 小红书, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/xiaohongshu.png}
   - {name: 富途牛牛, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/futu.png}
   - {name: 漏网之鱼, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png}
+  - {name: 广告拦截, type: select, proxies: [REJECT, 默认代理], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AdBlack.png}
   - {name: Speedtest, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Speedtest.png}
   - {name: 家宽前置, type: select, proxies: [狮城手动, 日本手动, 香港手动, 美国手动, XFLASH自动, 白嫖云自动, 良心云自动, 大哥云自动, XFLASH故转, 白嫖云故转, 良心云故转, 大哥云故转, 直连], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Server.png}
   # 地区手动选择
@@ -112,6 +113,7 @@ rules:
   - RULE-SET,private_domain,直连
   - RULE-SET,mydirect,直连
   - RULE-SET,myproxy,默认代理
+  - RULE-SET,ad_block,广告拦截
   - RULE-SET,icloud_domain,直连
   - RULE-SET,ai,ChatGPT
   - RULE-SET,github_domain,GitHub
@@ -155,6 +157,7 @@ rule-providers:
   private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
   myproxy: { <<: *class, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/proxy.list"}
   mydirect: { <<: *class, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/direct.list"}
+  ad_block: { <<: *class, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Advertising/Advertising.list" }
   ai: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
   youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
   icloud_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/icloud.mrs"}
