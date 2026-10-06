@@ -90,9 +90,6 @@ proxy-groups:
   - {name: 日本手动, type: select, include-all: true, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/jp.png}
   - {name: 狮城手动, type: select, include-all: true, filter: "(?=.*(新加坡|坡|狮城|SG|Singapore))^((?!(台|日|韩|深|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/sg.png}
   - {name: 美国手动, type: select, include-all: true, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/us.png}
-  # 全部节点故转自动
-  - {name: 故障转移, type: fallback, include-all: true, url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
-  - {name: 自动选择, type: url-test, include-all: true, url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
   # 各机场独立自动测速
   - {name: XFLASH自动, type: url-test, use: [ XFLASH ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
   - {name: 白嫖云自动, type: url-test, use: [ PAIPIAO ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
@@ -103,6 +100,9 @@ proxy-groups:
   - {name: 白嫖云故转, type: fallback, use: [ PAIPIAO ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
   - {name: 良心云故转, type: fallback, use: [ LIANGXIN ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
   - {name: 大哥云故转, type: fallback, use: [ DAGEYUN ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
+  # 全部节点故转自动
+  - {name: 故障转移, type: fallback, include-all: true, url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png }
+  - {name: 自动选择, type: url-test, include-all: true, url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png }
   - {name: 全部节点, type: select, include-all: true, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png}
 
 # 规则匹配
