@@ -14,5 +14,4 @@ deploy.js
 webstorm.config.js
 /target
 /src/main/resources/mybatis-generator.properties
-/config/me/订阅信息.yaml
 /config/me/my-secrets.conf
