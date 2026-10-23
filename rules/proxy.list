@@ -6,7 +6,6 @@ DOMAIN-SUFFIX,305316.top
 
 # 域名关键字匹配
 DOMAIN-KEYWORD,1e100
-DOMAIN-KEYWORD,xflash
 
 # 国外DNS
 DOMAIN-SUFFIX,dns.google
