@@ -11,9 +11,9 @@ proxy-providers:
 
 # 节点信息
 proxies:
-  - {name: 直连, type: direct}
+  - {name: 直连, type: direct, udp: true}
 
-# 全局配置 
+# 全局配置
 mixed-port: 7890
 allow-lan: true
 bind-address: "*"
@@ -28,6 +28,10 @@ profile:
   store-selected: true
   store-fake-ip: true
 
+# 时间同步（时间偏差会导致 TLS/节点握手失败）
+ntp:
+  enable: true
+  write-to-system: true
 
 # 入站
 tun:
@@ -42,6 +46,23 @@ tun:
   auto-redirect: false
   auto-detect-interface: false
 
+# 域名嗅探：应用直连 IP / 绕过系统 DNS 时，仍能还原域名参与分流
+sniffer:
+  enable: true
+  override-destination: false
+  force-dns-mapping: false
+  parse-pure-ip: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+
 # DNS模块
 dns:
   enable: true
@@ -50,7 +71,7 @@ dns:
   ipv6: false
   respect-rules: true
   enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.1/8
+  fake-ip-range: 198.18.0.0/16
   fake-ip-filter-mode: blacklist
   default-nameserver:
     - https://223.5.5.5/dns-query
@@ -60,10 +81,25 @@ dns:
   direct-nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
+  # 按域名集合指定解析服务器：国内走国内 DoH，国外走代理出去的 8.8.8.8
+  nameserver-policy:
+    "rule-set:cn_domain,private_domain,fakeipfilter_cn":
+      - https://dns.alidns.com/dns-query#disable-qtype-65=true
+      - https://doh.pub/dns-query#disable-qtype-65=true
+    "rule-set:fakeipfilter_!cn":
+      - https://8.8.8.8/dns-query#默认代理&disable-qtype-65=true
   nameserver:
-    - https://8.8.8.8/dns-query#RULES&ecs=223.5.5.0/24
+    - https://8.8.8.8/dns-query#默认代理&ecs=223.5.5.0/24
+  fallback:
+    - https://8.8.8.8/dns-query#默认代理
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
   fake-ip-filter:
-    - "rule-set:fakeipfilter_domain"
+    - "rule-set:fakeipfilter_cn"
+    - "rule-set:fakeipfilter_!cn"
+    - "rule-set:private_domain"
+    - "rule-set:cn_domain"
 
 # 公共常量
 x-common-proxies: &common-proxies [默认代理, 家宽落地, 狮城手动, 日本手动, 香港手动, 美国手动, 全部节点 ,自动选择, XFLASH自动, 白嫖云自动, 良心云自动, 大哥云自动, 故障转移, XFLASH故转, 白嫖云故转, 良心云故转, 大哥云故转, 直连]
@@ -117,6 +153,7 @@ proxy-groups:
 
 # 规则匹配
 rules:
+  - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),REJECT
   - RULE-SET,applications,直连
   - RULE-SET,private_ip,直连,no-resolve
   - RULE-SET,private_domain,直连
@@ -162,7 +199,8 @@ rule-anchor:
   class: &class {type: http, interval: 86400, behavior: classical, format: text}
 rule-providers:
   applications: { <<: *class, format: yaml, url: 'https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt' }
-  fakeipfilter_domain: {<<: *domain, url: "https://raw.githubusercontent.com/wwqgtxx/clash-rules/release/fakeip-filter.mrs"}
+  fakeipfilter_cn: { <<: *domain, format: text, url: "https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/rules/fakeipfilter-cn.list" }
+  fakeipfilter_!cn: { <<: *domain, format: text, url: "https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/rules/fakeipfilter-!cn.list" }
   private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
   myproxy: { <<: *class, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/proxy.list"}
   mydirect: { <<: *class, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/direct.list"}
