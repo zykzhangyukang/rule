@@ -28,6 +28,17 @@ profile:
   store-selected: true
   store-fake-ip: true
 
+
+external-controller: 0.0.0.0:9090
+secret: "123456"
+external-ui: ui
+external-ui-name: zashboard
+external-ui-url: "https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip"
+
+geox-url:
+  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+
+
 # 时间同步（时间偏差会导致 TLS/节点握手失败）
 ntp:
   enable: true
@@ -71,11 +82,18 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.0/16
   fake-ip-filter-mode: blacklist
+  # 仅用于解析下面各个 DoH/DoT 地址里的域名，必须是 IP 形式或能直接解析的地址
   default-nameserver:
     - https://223.5.5.5/dns-query
+  # 仅用于解析代理节点自身的域名（订阅里的 server 地址），走直连，避免"先有鸡还是先有蛋"
   proxy-server-nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
+  # 节点域名的分流解析：这些域名解析节点地址时改用指定 DNS
+  proxy-server-nameserver-policy:
+    "+.dongchedi.com":
+      - https://tshf1.flashdoh.com:2096/dns-query/秘钥#skip-cert-verify=true
+  # 命中规则为 DIRECT（直连）的域名，用这组 DNS 解析
   direct-nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
@@ -86,8 +104,10 @@ dns:
       - https://doh.pub/dns-query#disable-qtype-65=true
     "rule-set:fakeipfilter_!cn":
       - https://8.8.8.8/dns-query#默认代理&disable-qtype-65=true
+  # 默认解析服务器
   nameserver:
     - https://8.8.8.8/dns-query#默认代理&ecs=223.5.5.0/24
+  # 备用解析服务器
   fallback:
     - https://8.8.8.8/dns-query#默认代理
   fallback-filter:
@@ -151,7 +171,7 @@ proxy-groups:
 
 # 规则匹配
 rules:
-  - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),REJECT
+  - AND,((RULE-SET,cn!_domain),(DST-PORT,443),(NETWORK,UDP)),REJECT
   - RULE-SET,applications,直连
   - RULE-SET,private_ip,直连,no-resolve
   - RULE-SET,private_domain,直连
@@ -184,7 +204,7 @@ rules:
   - RULE-SET,netflix_ip,NETFLIX
   - RULE-SET,telegram_ip,Telegram
   - RULE-SET,speedtest_domain,Speedtest
-  - RULE-SET,geolocation-!cn,默认代理
+  - RULE-SET,cn!_domain,默认代理
   - RULE-SET,cn_domain,直连
   - RULE-SET,cn_ip,直连
   - MATCH,漏网之鱼
@@ -224,7 +244,7 @@ rule-providers:
   yfsp_domain: { <<: *class, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/yfsp.list"}
   binance_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/binance.mrs"}
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/speedtest.mrs" }
-  geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
+  cn!_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
 
   private_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
