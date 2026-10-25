@@ -2,7 +2,6 @@
 
 # 域名后缀匹配
 DOMAIN-SUFFIX,v2ex.com
-DOMAIN-SUFFIX,305316.top
 
 # 域名关键字匹配
 DOMAIN-KEYWORD,1e100
