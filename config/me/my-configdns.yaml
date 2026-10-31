@@ -124,14 +124,14 @@ dns:
 
 # 公共常量
 x-common-proxies: &common-proxies [默认代理, 家宽落地, 狮城手动, 日本手动, 香港手动, 美国手动, 全部节点 ,自动选择, XFLASH自动, 白嫖云自动, 良心云自动, 大哥云自动, 故障转移, XFLASH故转, 白嫖云故转, 良心云故转, 大哥云故转, 直连]
-x-node-exclude: &node-exclude '(?i)(剩余|流量|官网|套餐|到期|过期|Expire|Traffic|Reset|Game|游戏|家宽|倍率|[0-9]+(\.[0-9]+)?x|[0-9]+(\.[0-9]+)?倍)'
+x-node-exclude: &node-exclude '(?i)(剩余|流量|官网|套餐|订阅|到期|过期|Expire|Traffic|Reset|Game|游戏|家宽|倍率|[0-9]+(\.[0-9]+)?x|[0-9]+(\.[0-9]+)?倍)'
 
 # 出站策略
 proxy-groups:
   - {name: 默认代理, type: select, proxies: [家宽落地, 狮城手动, 日本手动, 香港手动, 美国手动, 全部节点, 自动选择, XFLASH自动, 白嫖云自动, 良心云自动, 大哥云自动, 故障转移, XFLASH故转, 白嫖云故转, 良心云故转, 大哥云故转, 直连], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
   - {name: YouTube, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png}
   - {name: Google, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png}
-  - {name: ChatGPT, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png}
+  - {name: AI, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AI.png}
   - {name: NETFLIX, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png}
   - {name: Telegram, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png}
   - {name: Microsoft, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png}
@@ -146,7 +146,7 @@ proxy-groups:
   - {name: Instagram, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/instagram.png}
   - {name: 欧乐影院, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/olevod.png}
   - {name: 爱壹帆, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/yfsp.png}
-  - {name: Wallet, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/pure/corner/wallet.png}
+  - {name: Wallet, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Cryptocurrency.png}
   - {name: 哔哩哔哩, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/bilibili.png}
   - {name: 小红书, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/xiaohongshu.png}
   - {name: 富途牛牛, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/futu.png}
@@ -173,7 +173,7 @@ proxy-groups:
   # 全部节点故转自动
   - {name: 自动选择, type: url-test, lazy: true, include-all: true, url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png }
   - {name: 故障转移, type: fallback, lazy: true, include-all: true, url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png }
-  - {name: 全部节点, type: select, include-all: true, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png}
+  - {name: 全部节点, type: select, include-all: true, exclude-filter: "(?i)(剩余|流量|官网|套餐|订阅|到期|过期|Expire|Traffic|Reset)", icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png}
 
 # 规则匹配
 rules:
@@ -185,7 +185,7 @@ rules:
   - RULE-SET,myproxy,默认代理
   - RULE-SET,ad_block,广告拦截
   - RULE-SET,icloud_domain,直连
-  - RULE-SET,ai,ChatGPT
+  - RULE-SET,ai,AI
   - RULE-SET,youtube_domain,YouTube
   - RULE-SET,google_domain,Google
   - RULE-SET,github_domain,GitHub
