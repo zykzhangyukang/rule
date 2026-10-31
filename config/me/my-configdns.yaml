@@ -81,6 +81,7 @@ dns:
   respect-rules: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.0/16
+  fake-ip-ttl: 1
   fake-ip-filter-mode: blacklist
   # 仅用于解析下面各个 DoH/DoT 地址里的域名，必须是 IP 形式或能直接解析的地址
   default-nameserver:
@@ -99,7 +100,7 @@ dns:
     - https://doh.pub/dns-query
   # 按域名集合指定解析服务器：国内走国内 DoH，国外走代理出去的 8.8.8.8
   nameserver-policy:
-    "rule-set:cn_domain,private_domain,fakeipfilter_cn":
+    "rule-set:cn_domain,private_domain,fakeipfilter_cn,steamcn_domain,microsoftcn_domain,applecn_domain":
       - https://dns.alidns.com/dns-query#disable-qtype-65=true
       - https://doh.pub/dns-query#disable-qtype-65=true
     "rule-set:fakeipfilter_!cn":
@@ -118,6 +119,9 @@ dns:
     - "rule-set:fakeipfilter_!cn"
     - "rule-set:private_domain"
     - "rule-set:cn_domain"
+    - "rule-set:microsoftcn_domain"
+    - "rule-set:applecn_domain"
+    - "rule-set:steamcn_domain"
 
 # 公共常量
 x-common-proxies: &common-proxies [默认代理, 家宽落地, 狮城手动, 日本手动, 香港手动, 美国手动, 全部节点 ,自动选择, XFLASH自动, 白嫖云自动, 良心云自动, 大哥云自动, 故障转移, XFLASH故转, 白嫖云故转, 良心云故转, 大哥云故转, 直连]
@@ -131,6 +135,9 @@ proxy-groups:
   - {name: ChatGPT, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png}
   - {name: NETFLIX, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png}
   - {name: Telegram, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png}
+  - {name: Microsoft, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png}
+  - {name: OneDrive, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/OneDrive.png}
+  - {name: Apple, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png}
   - {name: 抖音, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png}
   - {name: TikTok, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png}
   - {name: GitHub, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png}
@@ -155,18 +162,18 @@ proxy-groups:
   - {name: 狮城手动, type: select, include-all: true, filter: "(?=.*(新加坡|坡|狮城|SG|Singapore))^((?!(台|日|韩|深|美)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/sg.png}
   - {name: 美国手动, type: select, include-all: true, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$", exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/us.png}
   # 各机场独立自动测速
-  - {name: XFLASH自动, type: url-test, use: [ XFLASH ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
-  - {name: 白嫖云自动, type: url-test, use: [ PAIPIAO ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
-  - {name: 良心云自动, type: url-test, use: [ LIANGXIN ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
-  - {name: 大哥云自动, type: url-test, use: [ DAGEYUN ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
+  - {name: XFLASH自动, type: url-test, lazy: true, use: [ XFLASH ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
+  - {name: 白嫖云自动, type: url-test, lazy: true, use: [ PAIPIAO ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
+  - {name: 良心云自动, type: url-test, lazy: true, use: [ LIANGXIN ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
+  - {name: 大哥云自动, type: url-test, lazy: true, use: [ DAGEYUN ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
   # 各机场独立故障转移
-  - {name: XFLASH故转, type: fallback, use: [ XFLASH ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
-  - {name: 白嫖云故转, type: fallback, use: [ PAIPIAO ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
-  - {name: 良心云故转, type: fallback, use: [ LIANGXIN ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
-  - {name: 大哥云故转, type: fallback, use: [ DAGEYUN ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
+  - {name: XFLASH故转, type: fallback, lazy: true, use: [ XFLASH ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
+  - {name: 白嫖云故转, type: fallback, lazy: true, use: [ PAIPIAO ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
+  - {name: 良心云故转, type: fallback, lazy: true, use: [ LIANGXIN ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
+  - {name: 大哥云故转, type: fallback, lazy: true, use: [ DAGEYUN ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
   # 全部节点故转自动
-  - {name: 自动选择, type: url-test, include-all: true, url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png }
-  - {name: 故障转移, type: fallback, include-all: true, url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png }
+  - {name: 自动选择, type: url-test, lazy: true, include-all: true, url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png }
+  - {name: 故障转移, type: fallback, lazy: true, include-all: true, url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png }
   - {name: 全部节点, type: select, include-all: true, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png}
 
 # 规则匹配
@@ -183,7 +190,11 @@ rules:
   - RULE-SET,github_domain,GitHub
   - RULE-SET,youtube_domain,YouTube
   - RULE-SET,google_domain,Google
-  - RULE-SET,apple_domain,直连
+  - RULE-SET,onedrive_domain,OneDrive
+  - RULE-SET,microsoftcn_domain,直连
+  - RULE-SET,microsoft_domain,Microsoft
+  - RULE-SET,applecn_domain,直连
+  - RULE-SET,apple_domain,Apple
   - RULE-SET,bilibili_domain,哔哩哔哩
   - RULE-SET,xiaohongshu_domain,小红书
   - RULE-SET,douyin_domain,抖音
@@ -198,7 +209,7 @@ rules:
   - RULE-SET,binance_domain,币安
   - RULE-SET,telegram_domain,Telegram
   - RULE-SET,netflix_domain,NETFLIX
-  - RULE-SET,apple_ip,直连
+  - RULE-SET,apple_ip,Apple
   - RULE-SET,bilibili_ip,哔哩哔哩
   - RULE-SET,google_ip,Google
   - RULE-SET,netflix_ip,NETFLIX
@@ -231,6 +242,8 @@ rule-providers:
   telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
   netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
   apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
+  onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
+  microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
   douyin_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/douyin.mrs"}
   tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
   bilibili_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.mrs"}
@@ -246,6 +259,9 @@ rule-providers:
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/speedtest.mrs" }
   cn!_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
+  microsoftcn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft@cn.mrs"}
+  applecn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@cn.mrs"}
+  steamcn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam@cn.mrs"}
 
   private_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
   bilibili_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/bilibili.mrs"}
