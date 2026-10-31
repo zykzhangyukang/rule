@@ -187,18 +187,20 @@ rules:
   - RULE-SET,ad_block,广告拦截
   - RULE-SET,icloud_domain,直连
   - RULE-SET,ai,ChatGPT
-  - RULE-SET,github_domain,GitHub
   - RULE-SET,youtube_domain,YouTube
   - RULE-SET,google_domain,Google
+  - RULE-SET,github_domain,GitHub
   - RULE-SET,onedrive_domain,OneDrive
   - RULE-SET,microsoftcn_domain,直连
   - RULE-SET,microsoft_domain,Microsoft
   - RULE-SET,applecn_domain,直连
   - RULE-SET,apple_domain,Apple
+  - RULE-SET,telegram_domain,Telegram
+  - RULE-SET,tiktok_domain,TikTok
+  - RULE-SET,netflix_domain,NETFLIX
   - RULE-SET,bilibili_domain,哔哩哔哩
   - RULE-SET,xiaohongshu_domain,小红书
   - RULE-SET,douyin_domain,抖音
-  - RULE-SET,tiktok_domain,TikTok
   - RULE-SET,spotify_domain,Spotify
   - RULE-SET,futu_domain,富途牛牛
   - RULE-SET,x_domain,X
@@ -207,16 +209,14 @@ rules:
   - RULE-SET,olevod_domain,欧乐影院
   - RULE-SET,yfsp_domain,爱壹帆
   - RULE-SET,binance_domain,币安
-  - RULE-SET,telegram_domain,Telegram
-  - RULE-SET,netflix_domain,NETFLIX
-  - RULE-SET,apple_ip,Apple
-  - RULE-SET,bilibili_ip,哔哩哔哩
-  - RULE-SET,google_ip,Google
-  - RULE-SET,netflix_ip,NETFLIX
-  - RULE-SET,telegram_ip,Telegram
   - RULE-SET,speedtest_domain,Speedtest
   - RULE-SET,cn!_domain,默认代理
   - RULE-SET,cn_domain,直连
+  - RULE-SET,google_ip,Google
+  - RULE-SET,apple_ip,Apple
+  - RULE-SET,telegram_ip,Telegram
+  - RULE-SET,netflix_ip,NETFLIX
+  - RULE-SET,bilibili_ip,哔哩哔哩
   - RULE-SET,cn_ip,直连
   - MATCH,漏网之鱼
 
