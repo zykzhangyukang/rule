@@ -100,7 +100,7 @@ dns:
     - https://doh.pub/dns-query
   # 按域名集合指定解析服务器：国内走国内 DoH，国外走代理出去的 8.8.8.8
   nameserver-policy:
-    "rule-set:cn_domain,private_domain,fakeipfilter_cn,steamcn_domain,microsoftcn_domain,applecn_domain":
+    "rule-set:cn_domain,private_domain,fakeipfilter_cn,microsoftcn_domain,applecn_domain":
       - https://dns.alidns.com/dns-query#disable-qtype-65=true
       - https://doh.pub/dns-query#disable-qtype-65=true
     "rule-set:fakeipfilter_!cn":
@@ -121,7 +121,6 @@ dns:
     - "rule-set:cn_domain"
     - "rule-set:microsoftcn_domain"
     - "rule-set:applecn_domain"
-    - "rule-set:steamcn_domain"
 
 # 公共常量
 x-common-proxies: &common-proxies [默认代理, 家宽落地, 狮城手动, 日本手动, 香港手动, 美国手动, 全部节点 ,自动选择, XFLASH自动, 白嫖云自动, 良心云自动, 大哥云自动, 故障转移, XFLASH故转, 白嫖云故转, 良心云故转, 大哥云故转, 直连]
@@ -147,7 +146,7 @@ proxy-groups:
   - {name: Instagram, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/instagram.png}
   - {name: 欧乐影院, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/olevod.png}
   - {name: 爱壹帆, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/yfsp.png}
-  - {name: 币安, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/binance.png}
+  - {name: Wallet, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/s0lnce/mofish-icon/refs/heads/main/mihomo/pure/corner/wallet.png}
   - {name: 哔哩哔哩, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/bilibili.png}
   - {name: 小红书, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/xiaohongshu.png}
   - {name: 富途牛牛, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/futu.png}
@@ -208,7 +207,10 @@ rules:
   - RULE-SET,instagram_domain,Instagram
   - RULE-SET,olevod_domain,欧乐影院
   - RULE-SET,yfsp_domain,爱壹帆
-  - RULE-SET,binance_domain,币安
+  - RULE-SET,paypal_domain,Wallet
+  - RULE-SET,binance_domain,Wallet
+  - RULE-SET,okx_domain,Wallet
+  - RULE-SET,crypto_domain,Wallet
   - RULE-SET,speedtest_domain,Speedtest
   - RULE-SET,cn!_domain,默认代理
   - RULE-SET,cn_domain,直连
@@ -255,13 +257,15 @@ rule-providers:
   instagram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/instagram.mrs"}
   olevod_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/olevod.mrs"}
   yfsp_domain: { <<: *class, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/yfsp.list"}
+  paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
   binance_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/binance.mrs"}
+  okx_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/okx.mrs"}
+  crypto_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-cryptocurrency.mrs"}
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/speedtest.mrs" }
   cn!_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
   microsoftcn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft@cn.mrs"}
   applecn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple@cn.mrs"}
-  steamcn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam@cn.mrs"}
 
   private_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
   bilibili_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/bilibili.mrs"}
