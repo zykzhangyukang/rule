@@ -20,7 +20,7 @@ bind-address: "*"
 ipv6: false
 unified-delay: true
 tcp-concurrent: true
-log-level: warning
+log-level: info
 global-client-fingerprint: chrome
 keep-alive-idle: 600
 keep-alive-interval: 15
