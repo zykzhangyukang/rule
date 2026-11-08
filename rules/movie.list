@@ -1,5 +1,6 @@
-# 欧乐影院
+# 影视资源站
 
+# 欧乐影院
 DOMAIN-SUFFIX,haiwaikan.com
 DOMAIN-SUFFIX,iole.tv
 DOMAIN-SUFFIX,olehd.com
@@ -10,3 +11,11 @@ DOMAIN-SUFFIX,olevod.tv
 DOMAIN-SUFFIX,olevodtv.com
 DOMAIN-SUFFIX,olemovienews.com
 DOMAIN-SUFFIX,yuntongclouds.com
+
+# 爱壹帆
+DOMAIN-SUFFIX,yfsp.tv
+DOMAIN-SUFFIX,yifan.tv
+DOMAIN-SUFFIX,iyf.tv
+DOMAIN-SUFFIX,pipecdn.vip
+DOMAIN-SUFFIX,anybound.vip
+DOMAIN-SUFFIX,kubb.tv
