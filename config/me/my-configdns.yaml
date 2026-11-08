@@ -94,6 +94,22 @@ dns:
   proxy-server-nameserver-policy:
     "+.dongchedi.com":
       - https://tshf1.flashdoh.com:2096/dns-query/秘钥#skip-cert-verify=true
+    # 大哥云
+    "+.bilibilll.com":
+      - https://doh.lalakw.com:2096/dns-query/e9444f3c
+      - https://doh.luluky.com/dns-query/e9444f3c
+    "+.aixifan256.com":
+      - https://doh.lalakw.com:2096/dns-query/e9444f3c
+      - https://doh.luluky.com/dns-query/e9444f3c
+    "+.quandao.com":
+      - https://doh.lalakw.com:2096/dns-query/e9444f3c
+      - https://doh.luluky.com/dns-query/e9444f3c
+    "+.ydlingshi.com":
+      - https://doh.lalakw.com:2096/dns-query/e9444f3c
+      - https://doh.luluky.com/dns-query/e9444f3c
+    "+.gttysd.com":
+      - https://doh.lalakw.com:2096/dns-query/e9444f3c
+      - https://doh.luluky.com/dns-query/e9444f3c
   # 命中规则为 DIRECT（直连）的域名，用这组 DNS 解析
   direct-nameserver:
     - https://dns.alidns.com/dns-query
@@ -150,11 +166,11 @@ proxy-groups:
   - {name: Spotify, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png}
   - {name: X, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/x.png}
   - {name: Threads, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/threads.png}
-  - {name: Instagram, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/instagram.png}
+  - {name: Instagram, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Instagram.png}
   - {name: 欧乐影院, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/olevod.png}
   - {name: 爱壹帆, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/yfsp.png}
   - {name: Wallet, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Cryptocurrency.png}
-  - {name: 哔哩哔哩, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/bilibili.png}
+  - {name: 哔哩哔哩, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png}
   - {name: 小红书, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/xiaohongshu.png}
   - {name: 富途牛牛, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/futu.png}
   - {name: 漏网之鱼, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png}
