@@ -184,18 +184,18 @@ proxy-groups:
   - {name: 狮城手动, type: select, include-all: true, filter: *SG, exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/sg.png}
   - {name: 美国手动, type: select, include-all: true, filter: *US, exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/us.png}
   # 各机场独立自动测速
-  - {name: XFLASH自动, type: url-test, lazy: true, use: [ XFLASH ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
-  - {name: 白嫖云自动, type: url-test, lazy: true, use: [ PAIPIAO ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
-  - {name: 良心云自动, type: url-test, lazy: true, use: [ LIANGXIN ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
-  - {name: 大哥云自动, type: url-test, lazy: true, use: [ DAGEYUN ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
+  - {name: XFLASH自动, type: url-test, use: [ XFLASH ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
+  - {name: 白嫖云自动, type: url-test, use: [ PAIPIAO ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
+  - {name: 良心云自动, type: url-test, use: [ LIANGXIN ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
+  - {name: 大哥云自动, type: url-test, use: [ DAGEYUN ], url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
   # 各机场独立故障转移
-  - {name: XFLASH故转, type: fallback, lazy: true, use: [ XFLASH ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
-  - {name: 白嫖云故转, type: fallback, lazy: true, use: [ PAIPIAO ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
-  - {name: 良心云故转, type: fallback, lazy: true, use: [ LIANGXIN ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
-  - {name: 大哥云故转, type: fallback, lazy: true, use: [ DAGEYUN ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
+  - {name: XFLASH故转, type: fallback, use: [ XFLASH ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
+  - {name: 白嫖云故转, type: fallback, use: [ PAIPIAO ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
+  - {name: 良心云故转, type: fallback, use: [ LIANGXIN ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
+  - {name: 大哥云故转, type: fallback, use: [ DAGEYUN ], url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png}
   # 全部节点故转自动
-  - {name: 自动选择, type: url-test, lazy: true, include-all: true, url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png }
-  - {name: 故障转移, type: fallback, lazy: true, include-all: true, url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png }
+  - {name: 自动选择, type: url-test, include-all: true, url: https://www.gstatic.com/generate_204, tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png }
+  - {name: 故障转移, type: fallback, include-all: true, url: https://www.gstatic.com/generate_204, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png }
   - {name: 全部节点, type: select, include-all: true, exclude-filter: "(?i)(剩余|流量|官网|套餐|订阅|到期|过期|Expire|Traffic|Reset)", icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png}
 
 # 规则匹配
@@ -249,11 +249,12 @@ rules:
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
+  domain_text: &domain_text {type: http, interval: 86400, behavior: domain, format: text}
   class: &class {type: http, interval: 86400, behavior: classical, format: text}
 rule-providers:
   applications: { <<: *class, format: yaml, url: 'https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt' }
-  fakeipfilter_cn: { <<: *domain, format: text, url: "https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/rules/fakeipfilter-cn.list" }
-  fakeipfilter_!cn: { <<: *domain, format: text, url: "https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/rules/fakeipfilter-!cn.list" }
+  fakeipfilter_cn: { <<: *domain_text, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/fakeipfilter-cn.list" }
+  fakeipfilter_!cn: { <<: *domain_text, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/fakeipfilter-!cn.list" }
   private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
   myproxy: { <<: *class, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/proxy.list"}
   mydirect: { <<: *class, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/direct.list"}
@@ -277,7 +278,7 @@ rule-providers:
   x_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/x.mrs"}
   threads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/threads.mrs"}
   instagram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/instagram.mrs"}
-  movie_domain: { <<: *class, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/movie.list"}
+  movie_domain: { <<: *domain_text, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/movie.list"}
   paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
   binance_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/binance.mrs"}
   okx_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/okx.mrs"}
