@@ -1,0 +1,36 @@
+#!/bin/sh
+# 提交前检查：发现疑似秘钥就拒绝提交。启用方式：git config core.hooksPath .githooks
+# 额外的自定义关键词（如机场域名）可写进未跟踪文件 .git/secret-patterns，每行一个正则。
+
+fail=0
+
+if git diff --cached --name-only | grep -qx 'config/me/my-secrets.conf'; then
+  echo "拒绝提交：config/me/my-secrets.conf 含真实秘钥，不应加入暂存区。"
+  fail=1
+fi
+
+# 忽略占位符行（your_xxx / YOUR_XXX），.example 文件才能通过检查
+added=$(git diff --cached -U0 --no-color | grep -E '^\+[^+]' | grep -v -E 'your_|YOUR_' || true)
+
+check() {
+  if printf '%s\n' "$added" | grep -Eiq -- "$1"; then
+    echo "拒绝提交：暂存内容疑似包含$2"
+    fail=1
+  fi
+}
+
+check 'dns-query/[0-9a-zA-Z-]{8,}' '带 token 的 DoH 地址'
+check '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}' 'UUID'
+check '(password|passwd|username)[[:space:]]*:[[:space:]]*"?[^[:space:]"]+' '账号或密码字段（占位符请用 your_password 之类）并核对'
+
+patterns="$(git rev-parse --git-dir 2>/dev/null)/secret-patterns"
+if [ -f "$patterns" ]; then
+  while IFS= read -r p; do
+    [ -n "$p" ] && check "$p" "自定义关键词：$p"
+  done < "$patterns"
+fi
+
+if [ "$fail" -ne 0 ]; then
+  echo "确认无误可用 git commit --no-verify 跳过。"
+  exit 1
+fi
