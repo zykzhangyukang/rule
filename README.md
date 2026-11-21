@@ -20,4 +20,3 @@ https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/config/mihomo/
 - 公开配置：`config/me/my-configdns.yaml`，不含任何秘钥，可直接提交。
 - 私有覆写模块：`config/me/my-secrets.conf`，含订阅链接、账号密码、DoH token，已被 `.gitignore` 忽略。首次使用时复制 `config/me/my-secrets.conf.example` 并填入真实值。
 - 在 OpenClash 运行状态页点 **Overwrite Module**，上传 `my-secrets.conf`，匹配配置选 `all`，打开开关后重启插件。
-- 启用提交前检查：`git config core.hooksPath .githooks`。可在 `.git/secret-patterns` 里每行写一个自定义正则（如机场域名）。
