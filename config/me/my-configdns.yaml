@@ -159,17 +159,17 @@ proxy-groups:
   - {name: 家宽前置, type: select, proxies: [狮城自动, 日本自动, 香港自动, 台湾自动, 美国自动, 狮城手动, 日本手动, 香港手动, 台湾手动, 美国手动, XFLASH自动, 白嫖云自动, 良心云自动, 大哥云自动], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Server.png}
   - {name: 家宽落地, type: select, proxies: [美国家宽], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/US.png}
   # 地区手动选择
-  - {name: 狮城手动, type: select, include-all: true, filter: *filter-sg, exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/singapore.png}
-  - {name: 日本手动, type: select, include-all: true, filter: *filter-jp, exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/japan.png}
-  - {name: 香港手动, type: select, include-all: true, filter: *filter-hk, exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/hongkong.png}
-  - {name: 台湾手动, type: select, include-all: true, filter: *filter-tw, exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/taiwan.png}
-  - {name: 美国手动, type: select, include-all: true, filter: *filter-us, exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/usa.png}
+  - {name: 狮城手动, type: select, include-all: true, filter: *filter-sg, exclude-filter: *filter-exclude, icon: https://flagcdn.com/w80/sg.png}
+  - {name: 日本手动, type: select, include-all: true, filter: *filter-jp, exclude-filter: *filter-exclude, icon: https://flagcdn.com/w80/jp.png}
+  - {name: 香港手动, type: select, include-all: true, filter: *filter-hk, exclude-filter: *filter-exclude, icon: https://flagcdn.com/w80/hk.png}
+  - {name: 台湾手动, type: select, include-all: true, filter: *filter-tw, exclude-filter: *filter-exclude, icon: https://flagcdn.com/w80/tw.png}
+  - {name: 美国手动, type: select, include-all: true, filter: *filter-us, exclude-filter: *filter-exclude, icon: https://flagcdn.com/w80/us.png}
   # 地区自动测速
-  - {name: 狮城自动, type: url-test, include-all: true, filter: *filter-sg, exclude-filter: *filter-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/singapore.png }
-  - {name: 日本自动, type: url-test, include-all: true, filter: *filter-jp, exclude-filter: *filter-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/japan.png }
-  - {name: 香港自动, type: url-test, include-all: true, filter: *filter-hk, exclude-filter: *filter-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/hongkong.png }
-  - {name: 台湾自动, type: url-test, include-all: true, filter: *filter-tw, exclude-filter: *filter-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/taiwan.png }
-  - {name: 美国自动, type: url-test, include-all: true, filter: *filter-us, exclude-filter: *filter-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/usa.png }
+  - {name: 狮城自动, type: url-test, include-all: true, filter: *filter-sg, exclude-filter: *filter-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://flagcdn.com/w80/sg.png }
+  - {name: 日本自动, type: url-test, include-all: true, filter: *filter-jp, exclude-filter: *filter-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://flagcdn.com/w80/jp.png }
+  - {name: 香港自动, type: url-test, include-all: true, filter: *filter-hk, exclude-filter: *filter-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://flagcdn.com/w80/hk.png }
+  - {name: 台湾自动, type: url-test, include-all: true, filter: *filter-tw, exclude-filter: *filter-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://flagcdn.com/w80/tw.png }
+  - {name: 美国自动, type: url-test, include-all: true, filter: *filter-us, exclude-filter: *filter-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://flagcdn.com/w80/us.png }
   # 各机场独立自动测速
   - {name: XFLASH自动, type: url-test, use: [ XFLASH ], url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
   - {name: 白嫖云自动, type: url-test, use: [ PAIPIAO ], url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
