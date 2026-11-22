@@ -122,63 +122,61 @@ dns:
     - "rule-set:applecn_domain"
 
 # 公共常量
-x-common-proxies: &common-proxies [默认代理, 家宽落地, 狮城自动, 日本自动, 香港自动, 台湾自动, 美国自动, 狮城手动, 日本手动, 香港手动, 台湾手动, 美国手动, XFLASH自动, 白嫖云自动, 良心云自动, 大哥云自动, 全部节点 ,自动选择, 故障转移, 直连]
-x-node-exclude: &node-exclude '(?i)(剩余|流量|官网|套餐|订阅|到期|过期|Expire|Traffic|Reset|Game|游戏|家宽|倍率|[0-9]+(\.[0-9]+)?x|[0-9]+(\.[0-9]+)?倍)'
+x-proxy-choices: &proxy-choices [默认代理, 家宽落地, 狮城自动, 日本自动, 香港自动, 台湾自动, 美国自动, 狮城手动, 日本手动, 香港手动, 台湾手动, 美国手动, XFLASH自动, 白嫖云自动, 良心云自动, 大哥云自动, 全部节点, 自动选择, 故障转移, 直连]
+x-filter-exclude: &filter-exclude '(?i)(剩余|流量|官网|套餐|订阅|到期|过期|Expire|Traffic|Reset|Game|游戏|家宽|倍率|[0-9]+(\.[0-9]+)?x|[0-9]+(\.[0-9]+)?倍)'
 
-# 地区节点筛选（和上面的 node-exclude 配合使用）
-x-hk-filter: &HK "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"
-x-jp-filter: &JP "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$"
-x-tw-filter: &TW "(?=.*(台|TW|(?i)Taiwan))^((?!(港|韩|新|美)).)*$"
-x-sg-filter: &SG "(?=.*(新加坡|坡|狮城|SG|Singapore))^((?!(港|台|日|韩|ZJ)).)*$"
-x-us-filter: &US "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$"
+# 地区节点筛选（和上面的 filter-exclude 配合使用）
+x-filter-hk: &filter-hk "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"
+x-filter-jp: &filter-jp "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$"
+x-filter-tw: &filter-tw "(?=.*(台|TW|(?i)Taiwan))^((?!(港|韩|新|美)).)*$"
+x-filter-sg: &filter-sg "(?=.*(新加坡|坡|狮城|SG|Singapore))^((?!(港|台|日|韩|ZJ)).)*$"
+x-filter-us: &filter-us "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$"
 
 # 出站策略
 proxy-groups:
   - {name: 默认代理, type: select, proxies: [家宽落地, 狮城自动, 日本自动, 香港自动, 台湾自动, 美国自动, 狮城手动, 日本手动, 香港手动, 台湾手动, 美国手动, XFLASH自动, 白嫖云自动, 良心云自动, 大哥云自动, 全部节点, 自动选择, 故障转移, 直连], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
-  - {name: YouTube, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png}
-  - {name: Google, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png}
-  - {name: AI, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AI.png}
-  - {name: NETFLIX, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png}
-  - {name: Telegram, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png}
-  - {name: Microsoft, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png}
-  - {name: OneDrive, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/OneDrive.png}
-  - {name: Apple, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png}
-  - {name: 抖音, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png}
-  - {name: TikTok, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png}
-  - {name: GitHub, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png}
-  - {name: Spotify, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png}
-  - {name: X, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/x.png}
-  - {name: Threads, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/threads.png}
-  - {name: Instagram, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Instagram.png}
-  - {name: 影视资源站, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Streaming.png}
-  - {name: Wallet, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Cryptocurrency.png}
-  - {name: 哔哩哔哩, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png}
-  - {name: 小红书, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/xiaohongshu.png}
-  - {name: 富途牛牛, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/futu.png}
-  - {name: 漏网之鱼, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png}
-  - {name: 广告拦截, type: select, proxies: [REJECT, 直连, 默认代理], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AdBlack.png}
-  - {name: Speedtest, type: select, proxies: *common-proxies, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Speedtest.png}
-  - {name: 家宽前置, type: select, proxies: [狮城自动, 日本自动, 香港自动, 台湾自动, 美国自动, 狮城手动, 日本手动, 香港手动, 台湾手动, 美国手动, XFLASH自动, 白嫖云自动, 良心云自动, 大哥云自动, 直连], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Server.png}
+  - {name: YouTube, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png}
+  - {name: Google, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png}
+  - {name: AI, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AI.png}
+  - {name: NETFLIX, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png}
+  - {name: Telegram, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png}
+  - {name: Microsoft, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png}
+  - {name: OneDrive, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/OneDrive.png}
+  - {name: Apple, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png}
+  - {name: 抖音, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png}
+  - {name: TikTok, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png}
+  - {name: GitHub, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GitHub.png}
+  - {name: Spotify, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png}
+  - {name: X, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/x.png}
+  - {name: Threads, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/threads.png}
+  - {name: Instagram, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Instagram.png}
+  - {name: 影视资源站, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Streaming.png}
+  - {name: Wallet, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Cryptocurrency.png}
+  - {name: 哔哩哔哩, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png}
+  - {name: 漏网之鱼, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png}
+  - {name: 广告拦截, type: select, proxies: [REJECT, 直连], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AdBlack.png}
+  - {name: Speedtest, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Speedtest.png}
+  - {name: 家宽前置, type: select, proxies: [狮城自动, 日本自动, 香港自动, 台湾自动, 美国自动, 狮城手动, 日本手动, 香港手动, 台湾手动, 美国手动, XFLASH自动, 白嫖云自动, 良心云自动, 大哥云自动], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Server.png}
   - {name: 家宽落地, type: select, proxies: [美国家宽], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/US.png}
   # 地区手动选择
-  - {name: 狮城手动, type: select, include-all: true, filter: *SG, exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/sg.png}
-  - {name: 日本手动, type: select, include-all: true, filter: *JP, exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/jp.png}
-  - {name: 香港手动, type: select, include-all: true, filter: *HK, exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/hk.png}
-  - {name: 台湾手动, type: select, include-all: true, filter: *TW, exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/tw.png}
-  - {name: 美国手动, type: select, include-all: true, filter: *US, exclude-filter: *node-exclude, icon: https://flagcdn.com/w80/us.png}
+  - {name: 狮城手动, type: select, include-all: true, filter: *filter-sg, exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/singapore.png}
+  - {name: 日本手动, type: select, include-all: true, filter: *filter-jp, exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/japan.png}
+  - {name: 香港手动, type: select, include-all: true, filter: *filter-hk, exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/hongkong.png}
+  - {name: 台湾手动, type: select, include-all: true, filter: *filter-tw, exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/taiwan.png}
+  - {name: 美国手动, type: select, include-all: true, filter: *filter-us, exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/usa.png}
   # 地区自动测速
-  - {name: 狮城自动, type: url-test, include-all: true, filter: *SG, exclude-filter: *node-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://flagcdn.com/w80/sg.png }
-  - {name: 日本自动, type: url-test, include-all: true, filter: *JP, exclude-filter: *node-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://flagcdn.com/w80/jp.png }
-  - {name: 香港自动, type: url-test, include-all: true, filter: *HK, exclude-filter: *node-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://flagcdn.com/w80/hk.png }
-  - {name: 台湾自动, type: url-test, include-all: true, filter: *TW, exclude-filter: *node-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://flagcdn.com/w80/tw.png }
-  - {name: 美国自动, type: url-test, include-all: true, filter: *US, exclude-filter: *node-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://flagcdn.com/w80/us.png }
+  - {name: 狮城自动, type: url-test, include-all: true, filter: *filter-sg, exclude-filter: *filter-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/singapore.png }
+  - {name: 日本自动, type: url-test, include-all: true, filter: *filter-jp, exclude-filter: *filter-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/japan.png }
+  - {name: 香港自动, type: url-test, include-all: true, filter: *filter-hk, exclude-filter: *filter-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/hongkong.png }
+  - {name: 台湾自动, type: url-test, include-all: true, filter: *filter-tw, exclude-filter: *filter-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/taiwan.png }
+  - {name: 美国自动, type: url-test, include-all: true, filter: *filter-us, exclude-filter: *filter-exclude, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, icon: https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/icon/usa.png }
   # 各机场独立自动测速
-  - {name: XFLASH自动, type: url-test, use: [ XFLASH ], url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
-  - {name: 白嫖云自动, type: url-test, use: [ PAIPIAO ], url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
-  - {name: 良心云自动, type: url-test, use: [ LIANGXIN ], url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
-  - {name: 大哥云自动, type: url-test, use: [ DAGEYUN ], url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
+  - {name: XFLASH自动, type: url-test, use: [ XFLASH ], url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
+  - {name: 白嫖云自动, type: url-test, use: [ PAIPIAO ], url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
+  - {name: 良心云自动, type: url-test, use: [ LIANGXIN ], url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
+  - {name: 大哥云自动, type: url-test, use: [ DAGEYUN ], url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png}
   # 全部节点故转自动
-  - {name: 自动选择, type: url-test, include-all: true, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *node-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png }
+  - {name: 自动选择, type: url-test, include-all: true, url: https://www.gstatic.com/generate_204, tolerance: 50, interval: 300, filter: "^((?!(直连)).)*$", exclude-filter: *filter-exclude, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png }
   - {name: 故障转移, type: fallback, proxies: [XFLASH自动, 大哥云自动, 良心云自动, 白嫖云自动], url: https://www.gstatic.com/generate_204, interval: 300, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bypass.png }
   - {name: 全部节点, type: select, include-all: true, exclude-filter: "(?i)(剩余|流量|官网|套餐|订阅|到期|过期|Expire|Traffic|Reset)", icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png}
 
@@ -192,6 +190,8 @@ rules:
   - RULE-SET,myproxy,默认代理
   - RULE-SET,ad_block,广告拦截
   - RULE-SET,icloud_domain,直连
+  - RULE-SET,alipay,直连
+  - RULE-SET,wechat,直连,no-resolve
   - RULE-SET,ai,AI
   - RULE-SET,youtube_domain,YouTube
   - RULE-SET,google_domain,Google
@@ -205,10 +205,8 @@ rules:
   - RULE-SET,tiktok_domain,TikTok
   - RULE-SET,netflix_domain,NETFLIX
   - RULE-SET,bilibili_domain,哔哩哔哩
-  - RULE-SET,xiaohongshu_domain,小红书
   - RULE-SET,douyin_domain,抖音
   - RULE-SET,spotify_domain,Spotify
-  - RULE-SET,futu_domain,富途牛牛
   - RULE-SET,x_domain,X
   - RULE-SET,threads_domain,Threads
   - RULE-SET,instagram_domain,Instagram
@@ -256,9 +254,9 @@ rule-providers:
   douyin_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/douyin.mrs"}
   tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
   bilibili_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.mrs"}
-  xiaohongshu_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/xiaohongshu.mrs"}
   spotify_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.mrs"}
-  futu_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/futu.mrs"}
+  alipay: { <<: *class, format: yaml, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AliPay/AliPay.yaml"}
+  wechat: { <<: *class, format: yaml, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat.yaml"}
   x_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/x.mrs"}
   threads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/threads.mrs"}
   instagram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/instagram.mrs"}

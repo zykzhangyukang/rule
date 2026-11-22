@@ -14,6 +14,7 @@ https://raw.githubusercontent.com/qichiyuhub/rule/refs/heads/main/config/mihomo/
 - OpenClash 内核（meta）：https://github.com/vernesong/OpenClash/tree/core/master/meta
 - Koolson/Qure（图标等资源）：https://github.com/Koolson/Qure
 - meta-rules-dat（GeoSite/GeoIP）：https://github.com/MetaCubeX/meta-rules-dat/tree/meta/geo
+- ios_rule_script（blackmatrix7，各类应用分流规则）：https://github.com/blackmatrix7/ios_rule_script
 
 ## 秘钥管理
 
