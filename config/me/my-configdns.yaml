@@ -153,9 +153,9 @@ proxy-groups:
   - {name: 影视资源站, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Streaming.png}
   - {name: Wallet, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Cryptocurrency.png}
   - {name: 哔哩哔哩, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png}
-  - {name: 漏网之鱼, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png}
-  - {name: 广告拦截, type: select, proxies: [REJECT, 直连], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AdBlack.png}
   - {name: Speedtest, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Speedtest.png}
+  - {name: 广告拦截, type: select, proxies: [REJECT, 直连], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AdBlack.png}
+  - {name: 漏网之鱼, type: select, proxies: *proxy-choices, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png}
   - {name: 家宽前置, type: select, proxies: [狮城自动, 日本自动, 香港自动, 台湾自动, 美国自动, 狮城手动, 日本手动, 香港手动, 台湾手动, 美国手动, XFLASH自动, 白嫖云自动, 良心云自动, 大哥云自动], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Server.png}
   - {name: 家宽落地, type: select, proxies: [美国家宽], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/US.png}
   # 地区手动选择
