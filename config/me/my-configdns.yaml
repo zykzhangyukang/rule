@@ -233,14 +233,15 @@ rule-anchor:
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
   domain_text: &domain_text {type: http, interval: 86400, behavior: domain, format: text}
   class: &class {type: http, interval: 86400, behavior: classical, format: text}
+  class_yaml: &class_yaml {type: http, interval: 86400, behavior: classical, format: yaml}
 rule-providers:
-  applications: { <<: *class, format: yaml, url: 'https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt' }
+  applications: { <<: *class_yaml, url: 'https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt' }
   fakeipfilter_cn: { <<: *domain_text, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/fakeipfilter-cn.list" }
   fakeipfilter_!cn: { <<: *domain_text, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/fakeipfilter-!cn.list" }
   private_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/private.mrs"}
   myproxy: { <<: *class, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/proxy.list"}
   mydirect: { <<: *class, url: "https://raw.githubusercontent.com/zykzhangyukang/rule/refs/heads/master/rules/direct.list"}
-  ad_block: { <<: *class, format: yaml, url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash-Classical-Only.Ads.yaml" }
+  ad_block: { <<: *class_yaml, url: "https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash-Classical-Only.Ads.yaml" }
   ai: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
   youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
   icloud_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/icloud.mrs"}
@@ -255,8 +256,8 @@ rule-providers:
   tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
   bilibili_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/bilibili.mrs"}
   spotify_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/spotify.mrs"}
-  alipay: { <<: *class, format: yaml, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AliPay/AliPay.yaml"}
-  wechat: { <<: *class, format: yaml, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat.yaml"}
+  alipay: { <<: *class_yaml, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/AliPay/AliPay.yaml"}
+  wechat: { <<: *class_yaml, url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat.yaml"}
   x_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/x.mrs"}
   threads_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/threads.mrs"}
   instagram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/instagram.mrs"}
